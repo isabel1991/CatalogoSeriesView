@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="CatalogoSeriesPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>es.isabeljaimeatienza.seriesview.Idioma</class>
+    <class>es.isabeljaimeatienza.seriesview.Serie</class>
+    <class>es.isabeljaimeatienza.seriesview.Nacionalidad</class>
+    <class>es.isabeljaimeatienza.seriesview.Genero</class>
+    <class>es.isabeljaimeatienza.seriesview.entities.Genero</class>
+    <class>es.isabeljaimeatienza.seriesview.entities.Nacionalidad</class>
+    <class>es.isabeljaimeatienza.seriesview.entities.Idioma</class>
+    <class>es.isabeljaimeatienza.seriesview.entities.Serie</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby:C:\Users\cadit\OneDrive\Documents\NetBeansProjects\CatalogoSeries\CatalogoSeries; create=true"/>
+      <property name="javax.persistence.jdbc.user" value="APP"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+      <property name="javax.persistence.jdbc.password" value="soyzurda"/>
+    </properties>
+  </persistence-unit>
+</persistence>
