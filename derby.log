@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Thu Apr 23 10:49:23 CEST 2020:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0171-a63a-2e97-00000d34a9f0 
-on database directory C:\Users\cadit\OneDrive\Documents\NetBeansProjects\CatalogoSeries\CatalogoSeries with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30dae81 
+Fri Apr 24 13:28:06 CEST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0171-abf1-da46-00000d342100 
+on database directory C:\Users\cadit\OneDrive\Documents\NetBeansProjects\SeriesView\BDSeriesView with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30dae81 
 Loaded from file:/C:/Users/cadit/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=13.0.1+9
@@ -11,7 +11,7 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Thu Apr 23 10:50:51 CEST 2020 Thread[JavaFX Application Thread,5,main] Cleanup action starting
+Fri Apr 24 13:28:46 CEST 2020 Thread[JavaFX Application Thread,5,main] Cleanup action starting
 java.sql.SQLException: Database 'CatalogoSeries' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
@@ -29,7 +29,7 @@ java.sql.SQLException: Database 'CatalogoSeries' not found.
 	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
-	at es.isabeljaimeatienza.seriesview.App.stop(App.java:41)
+	at es.isabeljaimeatienza.seriesview.App.stop(App.java:54)
 	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$10(LauncherImpl.java:865)
 	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
 	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
@@ -63,7 +63,7 @@ ERROR XJ004: Database 'CatalogoSeries' not found.
 	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
-	at es.isabeljaimeatienza.seriesview.App.stop(App.java:41)
+	at es.isabeljaimeatienza.seriesview.App.stop(App.java:54)
 	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$10(LauncherImpl.java:865)
 	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
 	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
