@@ -27,16 +27,13 @@ public class App extends Application {
     public void start(Stage primaryStage) throws IOException {
         emf = Persistence.createEntityManagerFactory("CatalogoSeriesPU");
         em = emf.createEntityManager();
-//
-//        scene = new Scene(loadFXML("primary"), 640, 480);
-//        stage.setScene(scene);
-//        stage.show();
+
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("primary.fxml"));
     Parent root = fxmlLoader.load();
     PrimaryController seriesViewController = (PrimaryController) fxmlLoader.getController();                
     seriesViewController.setEntityManager(em);
     seriesViewController.cargarTodasSeries();
-    Scene scene = new Scene(root, 300, 250);
+    Scene scene = new Scene(root, 750,500);
     primaryStage.setTitle("Series");
     primaryStage.setScene(scene);
     primaryStage.show();                
