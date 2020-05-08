@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,23 +24,27 @@ public class App extends Application {
     private static EntityManager em;
     private static Scene scene;
     private static PrimaryController primaryController;
-  
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         emf = Persistence.createEntityManagerFactory("CatalogoSeriesPU");
         em = emf.createEntityManager();
 
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("primary.fxml"));
-    Parent root = fxmlLoader.load();
-    PrimaryController seriesViewController = (PrimaryController) fxmlLoader.getController();                
-    seriesViewController.setEntityManager(em);
-    seriesViewController.cargarTodasSeries();
-    Scene scene = new Scene(root, 750,500);
-    primaryStage.setTitle("Series");
-    primaryStage.setScene(scene);
-    primaryStage.show();                
+        StackPane rootMain = new StackPane();
 
-       
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("primary.fxml"));
+        Pane rootSeriesView = fxmlLoader.load();
+        rootMain.getChildren().add(rootSeriesView);
+
+// Carga del EntityManager, etc ...
+        Scene scene = new Scene(rootMain, 650, 400);
+
+        PrimaryController seriesViewController = (PrimaryController) fxmlLoader.getController();
+        seriesViewController.setEntityManager(em);
+        seriesViewController.cargarTodasSeries();
+        primaryStage.setTitle("Series");
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
     }
 
@@ -58,13 +64,13 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-       FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-       primaryController=(PrimaryController)fxmlLoader.getController();
-        System.out.println("PrimaryControler:"+ primaryController);
-       // Después de obtener el objeto del controlador y del EntityManager:
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        primaryController = (PrimaryController) fxmlLoader.getController();
+        System.out.println("PrimaryControler:" + primaryController);
+        // Después de obtener el objeto del controlador y del EntityManager:
         primaryController.setEntityManager(em);
         return fxmlLoader.load();
-
+        
     }
 
     public static void main(String[] args) {
