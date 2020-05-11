@@ -2,13 +2,14 @@ package es.isabeljaimeatienza.seriesview;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javax.persistence.EntityManager;
@@ -24,9 +25,17 @@ public class App extends Application {
     private static EntityManager em;
     private static Scene scene;
     private static PrimaryController primaryController;
+    private Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Series Netflix"); // Cambia el nombre del título de la ventana
+
+        // Set the application icon.
+        this.primaryStage.getIcons().add(new Image("file:fotos/netflix.png")); // Para cambiar el icono de la ventana
+
         emf = Persistence.createEntityManagerFactory("CatalogoSeriesPU");
         em = emf.createEntityManager();
 
@@ -34,16 +43,20 @@ public class App extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("primary.fxml"));
         Pane rootSeriesView = fxmlLoader.load();
-        rootMain.getChildren().add(rootSeriesView);
+
+        rootMain.getChildren()
+                .add(rootSeriesView);
 
 // Carga del EntityManager, etc ...
-        Scene scene = new Scene(rootMain, 650, 400);
-
+        Scene scene = new Scene(rootMain, 600, 400);
         PrimaryController seriesViewController = (PrimaryController) fxmlLoader.getController();
+
         seriesViewController.setEntityManager(em);
+
         seriesViewController.cargarTodasSeries();
-        primaryStage.setTitle("Series");
+
         primaryStage.setScene(scene);
+
         primaryStage.show();
 
     }
@@ -64,13 +77,14 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class
+                .getResource(fxml + ".fxml"));
         primaryController = (PrimaryController) fxmlLoader.getController();
         System.out.println("PrimaryControler:" + primaryController);
         // Después de obtener el objeto del controlador y del EntityManager:
         primaryController.setEntityManager(em);
         return fxmlLoader.load();
-        
+
     }
 
     public static void main(String[] args) {

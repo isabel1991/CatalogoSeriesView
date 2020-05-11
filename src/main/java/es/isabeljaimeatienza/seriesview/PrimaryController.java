@@ -1,7 +1,9 @@
 package es.isabeljaimeatienza.seriesview;
 
+import static es.isabeljaimeatienza.seriesview.SecondaryController.CARPETA_FOTOS;
 import es.isabeljaimeatienza.seriesview.entities.Genero;
 import es.isabeljaimeatienza.seriesview.entities.Serie;
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.io.IOException;
@@ -26,6 +28,8 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -65,6 +69,8 @@ public class PrimaryController implements Initializable {
     @FXML
 
     private AnchorPane rootSeriesView;
+    @FXML
+    private ImageView imageViewFoto;
 
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -108,6 +114,18 @@ public class PrimaryController implements Initializable {
                 if (serieSeleccionada.getGenero() != null) {
                     comboBoxGenero.setValue(serieSeleccionada.getGenero());
                 }
+
+                if (serieSeleccionada.getFoto() != null) {
+                    String imageFileName = serieSeleccionada.getFoto();
+                    File file = new File(CARPETA_FOTOS + "/" + imageFileName);
+                    if (file.exists()) {
+                        Image image = new Image(file.toURI().toString());
+                        imageViewFoto.setImage(image);
+                    } else {
+                        Alert alert = new Alert(AlertType.INFORMATION, "No se encuentra la imagen");
+                        alert.showAndWait();
+                    }
+                }
                 // ATENCIÓN!!! HACER AQUÍ LISTA DESPEGABLE
 //                        textFieldGenero.setText(serieSeleccionada.getGenero());
             } else {
@@ -124,6 +142,7 @@ public class PrimaryController implements Initializable {
         List listGenero = queryGeneroFindAll.getResultList();
         comboBoxGenero.setItems(FXCollections.observableList(listGenero));
         tableSeries.setItems(FXCollections.observableArrayList(listSerie));
+
     }
 
     @FXML
@@ -158,7 +177,7 @@ public class PrimaryController implements Initializable {
         if (result.get() == ButtonType.OK) {
             // Acciones a realizar si el usuario acepta
             entityManager.getTransaction().begin();
-            entityManager.merge(serieSeleccionada);
+            serieSeleccionada = entityManager.merge(serieSeleccionada);
             entityManager.remove(serieSeleccionada);
             entityManager.getTransaction().commit();
 
@@ -202,23 +221,31 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void onActionEditar(ActionEvent event) {
-        try {
-            // Cargar la vista de detalle
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Secondary.fxml"));
-            Parent rootDetalleView = fxmlLoader.load();
-            SecondaryController secondaryController = (SecondaryController) fxmlLoader.getController();
-            secondaryController.setRootSeriesView(rootSeriesView);
-            secondaryController.setTableViewPrevio(tableSeries);
-            secondaryController.setSerie(entityManager, serieSeleccionada, false);
-            secondaryController.mostrarDatos();
-            // Ocultar la vista de la lista
-            rootSeriesView.setVisible(false);
+        int numFilaSeleccionada = tableSeries.getSelectionModel().getSelectedIndex();
+        if (numFilaSeleccionada != -1) {
+            try {
+                // Cargar la vista de detalle
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Secondary.fxml"));
+                Parent rootDetalleView = fxmlLoader.load();
+                SecondaryController secondaryController = (SecondaryController) fxmlLoader.getController();
+                secondaryController.setRootSeriesView(rootSeriesView);
+                secondaryController.setTableViewPrevio(tableSeries);
+                secondaryController.setSerie(entityManager, serieSeleccionada, false);
+                secondaryController.mostrarDatos();
+                // Ocultar la vista de la lista
+                rootSeriesView.setVisible(false);
 
-            // Añadir la vista de detalle al StackPane principal para que se muestre
-            StackPane rootMain = (StackPane) rootSeriesView.getScene().getRoot();
-            rootMain.getChildren().add(rootDetalleView);
-        } catch (IOException ex) {
-            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+                // Añadir la vista de detalle al StackPane principal para que se muestre
+                StackPane rootMain = (StackPane) rootSeriesView.getScene().getRoot();
+                rootMain.getChildren().add(rootDetalleView);
+            } catch (IOException e) {
+                Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+
+        } else {
+            Alert alert = new Alert(AlertType.WARNING, "No ha saleccionado una serie");
+            alert.showAndWait();
         }
     }
 }

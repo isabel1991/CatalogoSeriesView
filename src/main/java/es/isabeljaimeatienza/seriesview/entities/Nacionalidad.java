@@ -7,29 +7,39 @@ package es.isabeljaimeatienza.seriesview.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author cadit
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "NACIONALIDAD")
-@javax.persistence.NamedQueries({
-    @javax.persistence.NamedQuery(name = "Nacionalidad.findAll", query = "SELECT n FROM Nacionalidad n"),
-    @javax.persistence.NamedQuery(name = "Nacionalidad.findById", query = "SELECT n FROM Nacionalidad n WHERE n.id = :id"),
-    @javax.persistence.NamedQuery(name = "Nacionalidad.findByPais", query = "SELECT n FROM Nacionalidad n WHERE n.pais = :pais")})
+@Entity
+@Table(name = "NACIONALIDAD")
+@NamedQueries({
+    @NamedQuery(name = "Nacionalidad.findAll", query = "SELECT n FROM Nacionalidad n"),
+    @NamedQuery(name = "Nacionalidad.findById", query = "SELECT n FROM Nacionalidad n WHERE n.id = :id"),
+    @NamedQuery(name = "Nacionalidad.findByPais", query = "SELECT n FROM Nacionalidad n WHERE n.pais = :pais")})
 public class Nacionalidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @javax.persistence.Id
-    @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    @javax.persistence.Basic(optional = false)
-    @javax.persistence.Column(name = "ID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
     private Integer id;
-    @javax.persistence.Basic(optional = false)
-    @javax.persistence.Column(name = "PAIS")
+    @Basic(optional = false)
+    @Column(name = "PAIS")
     private String pais;
-    @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "pais")
+    @OneToMany(mappedBy = "pais")
     private Collection<Serie> serieCollection;
 
     public Nacionalidad() {

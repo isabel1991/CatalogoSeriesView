@@ -8,56 +8,69 @@ package es.isabeljaimeatienza.seriesview.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author cadit
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "SERIE")
-@javax.persistence.NamedQueries({
-    @javax.persistence.NamedQuery(name = "Serie.findAll", query = "SELECT s FROM Serie s"),
-    @javax.persistence.NamedQuery(name = "Serie.findById", query = "SELECT s FROM Serie s WHERE s.id = :id"),
-    @javax.persistence.NamedQuery(name = "Serie.findByT\u00edtulo", query = "SELECT s FROM Serie s WHERE s.t\u00edtulo = :t\u00edtulo"),
-    @javax.persistence.NamedQuery(name = "Serie.findByFechaEstreno", query = "SELECT s FROM Serie s WHERE s.fechaEstreno = :fechaEstreno"),
-    @javax.persistence.NamedQuery(name = "Serie.findByCapitulos", query = "SELECT s FROM Serie s WHERE s.capitulos = :capitulos"),
-    @javax.persistence.NamedQuery(name = "Serie.findByPrecio", query = "SELECT s FROM Serie s WHERE s.precio = :precio"),
-    @javax.persistence.NamedQuery(name = "Serie.findByValoracion", query = "SELECT s FROM Serie s WHERE s.valoracion = :valoracion"),
-    @javax.persistence.NamedQuery(name = "Serie.findByVisionada", query = "SELECT s FROM Serie s WHERE s.visionada = :visionada"),
-    @javax.persistence.NamedQuery(name = "Serie.findByFoto", query = "SELECT s FROM Serie s WHERE s.foto = :foto")})
+@Entity
+@Table(name = "SERIE")
+@NamedQueries({
+    @NamedQuery(name = "Serie.findAll", query = "SELECT s FROM Serie s"),
+    @NamedQuery(name = "Serie.findById", query = "SELECT s FROM Serie s WHERE s.id = :id"),
+    @NamedQuery(name = "Serie.findByT\u00edtulo", query = "SELECT s FROM Serie s WHERE s.t\u00edtulo = :t\u00edtulo"),
+    @NamedQuery(name = "Serie.findByFechaEstreno", query = "SELECT s FROM Serie s WHERE s.fechaEstreno = :fechaEstreno"),
+    @NamedQuery(name = "Serie.findByCapitulos", query = "SELECT s FROM Serie s WHERE s.capitulos = :capitulos"),
+    @NamedQuery(name = "Serie.findByPrecio", query = "SELECT s FROM Serie s WHERE s.precio = :precio"),
+    @NamedQuery(name = "Serie.findByValoracion", query = "SELECT s FROM Serie s WHERE s.valoracion = :valoracion"),
+    @NamedQuery(name = "Serie.findByVisionada", query = "SELECT s FROM Serie s WHERE s.visionada = :visionada"),
+    @NamedQuery(name = "Serie.findByFoto", query = "SELECT s FROM Serie s WHERE s.foto = :foto")})
 public class Serie implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @javax.persistence.Id
-    @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    @javax.persistence.Basic(optional = false)
-    @javax.persistence.Column(name = "ID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
     private Integer id;
-    @javax.persistence.Basic(optional = false)
-    @javax.persistence.Column(name = "T\u00cdTULO")
+    @Basic(optional = false)
+    @Column(name = "T\u00cdTULO")
     private String título;
-    @javax.persistence.Column(name = "FECHA_ESTRENO")
-    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "FECHA_ESTRENO")
+    @Temporal(TemporalType.DATE)
     private Date fechaEstreno;
-    @javax.persistence.Column(name = "CAPITULOS")
+    @Column(name = "CAPITULOS")
     private Integer capitulos;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @javax.persistence.Column(name = "PRECIO")
+    @Column(name = "PRECIO")
     private BigDecimal precio;
-    @javax.persistence.Column(name = "VALORACION")
-    private Boolean valoracion;
-    @javax.persistence.Column(name = "VISIONADA")
+    @Column(name = "VALORACION")
+    private Character valoracion;
+    @Column(name = "VISIONADA")
     private Boolean visionada;
-    @javax.persistence.Column(name = "FOTO")
+    @Column(name = "FOTO")
     private String foto;
-    @javax.persistence.JoinColumn(name = "GENERO", referencedColumnName = "ID")
-    @javax.persistence.ManyToOne(optional = false)
+    @JoinColumn(name = "GENERO", referencedColumnName = "ID")
+    @ManyToOne
     private Genero genero;
-    @javax.persistence.JoinColumn(name = "IDIOMA", referencedColumnName = "ID")
-    @javax.persistence.ManyToOne(optional = false)
+    @JoinColumn(name = "IDIOMA", referencedColumnName = "ID")
+    @ManyToOne
     private Idioma idioma;
-    @javax.persistence.JoinColumn(name = "PAIS", referencedColumnName = "ID")
-    @javax.persistence.ManyToOne(optional = false)
+    @JoinColumn(name = "PAIS", referencedColumnName = "ID")
+    @ManyToOne
     private Nacionalidad pais;
 
     public Serie() {
@@ -112,11 +125,11 @@ public class Serie implements Serializable {
         this.precio = precio;
     }
 
-    public Boolean getValoracion() {
+    public Character getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(Boolean valoracion) {
+    public void setValoracion(Character valoracion) {
         this.valoracion = valoracion;
     }
 

@@ -7,32 +7,42 @@ package es.isabeljaimeatienza.seriesview.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author cadit
  */
-@javax.persistence.Entity
-@javax.persistence.Table(name = "IDIOMA")
-@javax.persistence.NamedQueries({
-    @javax.persistence.NamedQuery(name = "Idioma.findAll", query = "SELECT i FROM Idioma i"),
-    @javax.persistence.NamedQuery(name = "Idioma.findById", query = "SELECT i FROM Idioma i WHERE i.id = :id"),
-    @javax.persistence.NamedQuery(name = "Idioma.findByCodigo", query = "SELECT i FROM Idioma i WHERE i.codigo = :codigo"),
-    @javax.persistence.NamedQuery(name = "Idioma.findByNombre", query = "SELECT i FROM Idioma i WHERE i.nombre = :nombre")})
+@Entity
+@Table(name = "IDIOMA")
+@NamedQueries({
+    @NamedQuery(name = "Idioma.findAll", query = "SELECT i FROM Idioma i"),
+    @NamedQuery(name = "Idioma.findById", query = "SELECT i FROM Idioma i WHERE i.id = :id"),
+    @NamedQuery(name = "Idioma.findByCodigo", query = "SELECT i FROM Idioma i WHERE i.codigo = :codigo"),
+    @NamedQuery(name = "Idioma.findByNombre", query = "SELECT i FROM Idioma i WHERE i.nombre = :nombre")})
 public class Idioma implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @javax.persistence.Id
-    @javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    @javax.persistence.Basic(optional = false)
-    @javax.persistence.Column(name = "ID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
     private Integer id;
-    @javax.persistence.Column(name = "CODIGO")
+    @Column(name = "CODIGO")
     private String codigo;
-    @javax.persistence.Basic(optional = false)
-    @javax.persistence.Column(name = "NOMBRE")
+    @Basic(optional = false)
+    @Column(name = "NOMBRE")
     private String nombre;
-    @javax.persistence.OneToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "idioma")
+    @OneToMany(mappedBy = "idioma")
     private Collection<Serie> serieCollection;
 
     public Idioma() {
