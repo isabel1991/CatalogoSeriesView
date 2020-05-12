@@ -48,7 +48,7 @@ public class App extends Application {
                 .add(rootSeriesView);
 
 // Carga del EntityManager, etc ...
-        Scene scene = new Scene(rootMain, 600, 400);
+        Scene scene = new Scene(rootMain, 800, 500);
         PrimaryController seriesViewController = (PrimaryController) fxmlLoader.getController();
 
         seriesViewController.setEntityManager(em);

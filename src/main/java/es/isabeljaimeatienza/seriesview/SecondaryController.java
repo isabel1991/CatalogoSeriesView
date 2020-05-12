@@ -172,7 +172,11 @@ public class SecondaryController implements Initializable {
 
     public void mostrarDatos() {
         textFieldTitulo.setText(serie.getTítulo());
-        textFieldCapitulos.setText(String.valueOf(serie.getCapitulos()));
+        
+        if (serie.getCapitulos()
+                != null) {
+            textFieldCapitulos.setText(String.valueOf(serie.getCapitulos()));
+        }
         Query queryGeneroFindAll = entityManager.createNamedQuery("Genero.findAll");
         List listGenero = queryGeneroFindAll.getResultList();
         comboBoxGenero.setItems(FXCollections.observableList(listGenero));

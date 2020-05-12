@@ -116,7 +116,7 @@
             </HBox>
             <DatePicker fx:id="datePickerFecha" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <TextField fx:id="textFieldPrecio" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="textFieldCapitulos" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="textFieldCapitulos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" onAction="#onActionButtonGuardar" text="Guardar" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Serif Regular" size="12.0" />
