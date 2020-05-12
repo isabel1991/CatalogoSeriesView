@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootSerieDetalle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.isabeljaimeatienza.seriesview.SecondaryController">
+<AnchorPane fx:id="rootSerieDetalle" style="-fx-background-color: black;" stylesheets="@CSSheetSeries.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.isabeljaimeatienza.seriesview.SecondaryController">
    <children>
       <GridPane layoutX="100.0" layoutY="69.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
@@ -39,60 +40,69 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" text="Título:" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label alignment="CENTER" text="Título:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Total de capítulos:" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Label text="Total de capítulos:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Género:" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Label text="Género:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Idioma:" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Label text="Idioma:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="País:" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Label text="País:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Valoración:" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+            <Label text="Valoración:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Vista:" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+            <Label text="Vista:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Precio:" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <Label text="Precio:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Fecha de estreno:" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+            <Label text="Fecha de estreno:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="9">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Imagen:" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+            <Label text="Imagen:" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="10">
                <font>
                   <Font name="Serif Bold" size="12.0" />
                </font>
             </Label>
             <TextField fx:id="textFieldTitulo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboBoxGenero" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="comboBoxIdioma" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox fx:id="comboBoxPais" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBoxGenero" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
+            <ComboBox fx:id="comboBoxIdioma" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
+            <ComboBox fx:id="comboBoxPais" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
                   <RadioButton fx:id="radioButtonMeGusta" mnemonicParsing="false" text="Me gusta">
@@ -102,39 +112,60 @@
                      <toggleGroup>
                         <ToggleGroup fx:id="valora" />
                      </toggleGroup>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </RadioButton>
                   <RadioButton fx:id="radioButtonNoMeGusta" mnemonicParsing="false" text="No me gusta" toggleGroup="$valora">
                      <font>
                         <Font name="Serif Regular" size="12.0" />
-                     </font></RadioButton>
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></RadioButton>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
-                  <CheckBox fx:id="checkBoxVista" mnemonicParsing="false" text="Vista" />
+                  <CheckBox fx:id="checkBoxVista" mnemonicParsing="false" text="Vista">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></CheckBox>
                </children>
             </HBox>
-            <DatePicker fx:id="datePickerFecha" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <DatePicker fx:id="datePickerFecha" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></DatePicker>
             <TextField fx:id="textFieldPrecio" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <TextField fx:id="textFieldCapitulos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#onActionButtonGuardar" text="Guardar" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#onActionButtonGuardar" style="-fx-background-color: #92060D;" text="Guardar" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Serif Regular" size="12.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionButtonCancelar" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button mnemonicParsing="false" onAction="#onActionButtonCancelar" style="-fx-background-color: #92060D;" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="Serif Regular" size="12.0" />
-               </font></Button>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <children>
                   <ImageView fx:id="imageViewFoto" fitHeight="15.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="buttonExaminar" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onActionButtonExaminar" prefHeight="32.0" prefWidth="74.0" text="Examinar...">
+                  <Button fx:id="buttonExaminar" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onActionButtonExaminar" style="-fx-background-color: #92060D;" text="Examinar...">
                      <HBox.margin>
-                        <Insets left="120.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
                      <font>
                         <Font name="Serif Regular" size="12.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </HBox>

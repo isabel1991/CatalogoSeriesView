@@ -151,7 +151,16 @@ public class PrimaryController implements Initializable {
         // es decir, debe haber una serie seleccionada para poder modificarla
         if (serieSeleccionada != null) {
             serieSeleccionada.setTítulo(textFieldTitulo.getText());
-            serieSeleccionada.setCapitulos(Integer.valueOf(textFieldCapitulos.getText()));
+                    if (textFieldCapitulos.getText().isEmpty()== false) {
+            try {
+                serieSeleccionada.setCapitulos(Integer.valueOf(textFieldCapitulos.getText()));
+            } catch (Exception e) {
+                Alert alert = new Alert(AlertType.WARNING, "El número de capítulos no es correcto");
+                alert.showAndWait();
+
+            }
+
+        }
             serieSeleccionada.setGenero(comboBoxGenero.getValue());
             entityManager.getTransaction().begin();
             entityManager.merge(serieSeleccionada);
